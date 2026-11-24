@@ -98,6 +98,10 @@
         align-items: flex-start;
         gap: 4px;
       }
+      .btn-book {
+        font-size: 13px;
+        padding: 12px 14px;
+      }
       .modal-card {
         padding: 18px;
         border-radius: 14px;
@@ -233,6 +237,10 @@
       border: none;
       cursor: pointer;
       transition: background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .price-nowrap {
+      white-space: nowrap;
     }
 
     .btn-gold {
@@ -457,7 +465,7 @@
             </ul>
           </div>
           <button type="button" class="btn-book btn-gold" id="btnRagazzi" onclick="apriPrenotazione('ragazzi_gio_1800', 'Collettiva Ragazzi (Gio 18:00)')">
-            Prenota Lezione Ragazzi (12,90 €)
+            Prenota Lezione Ragazzi <span class="price-nowrap">(12,90 €)</span>
           </button>
         </div>
       </section>
@@ -485,7 +493,7 @@
             </ul>
           </div>
           <button type="button" class="btn-book btn-gold" id="btnAdulti" onclick="apriPrenotazione('adulti_gio_1915', 'Collettiva Adulti (Gio 19:15)')">
-            Prenota Lezione Adulti (12,90 €)
+            Prenota Lezione Adulti <span class="price-nowrap">(12,90 €)</span>
           </button>
         </div>
       </section>
@@ -533,7 +541,7 @@
           <input type="tel" id="cellulare" name="tel" autocomplete="tel" placeholder="Es. 3802040875" required />
         </div>
 
-        <button type="submit" class="btn-book btn-gold" id="btnConferma">Procedi al pagamento (12,90 €)</button>
+        <button type="submit" class="btn-book btn-gold" id="btnConferma">Procedi al pagamento <span class="price-nowrap">(12,90 €)</span></button>
       </form>
 
       <div class="esito" id="boxEsito"></div>
@@ -726,7 +734,7 @@
           "<strong>Errore temporaneo di invio.</strong> Riprova tra qualche secondo o scrivimi su WhatsApp al <strong>3802040875</strong>.";
       } finally {
         btnConferma.disabled = false;
-        btnConferma.textContent = "Procedi al pagamento (12,90 €)";
+        btnConferma.innerHTML = 'Procedi al pagamento <span class="price-nowrap">(12,90 €)</span>';
       }
     });
 
