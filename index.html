@@ -232,6 +232,7 @@
       font-family: Arial, sans-serif;
       font-size: 13.5px;
       font-weight: bold;
+      line-height: 1.35;
       padding: 13px 16px;
       border-radius: 8px;
       border: none;
@@ -454,7 +455,7 @@
           <div>
             <div class="formula-head">
               <span class="formula-name">Lezione Collettiva Singola</span>
-              <span class="formula-price">12,90 €</span>
+              <span class="formula-price">€ 12,90</span>
             </div>
             <div class="formula-meta">Giovedì ore 18:00 (60 min) · Google Meet · Quorum 8 · Max 20</div>
             <div class="live-pill" id="liveRagazzi">Disponibilità: caricamento...</div>
@@ -465,7 +466,7 @@
             </ul>
           </div>
           <button type="button" class="btn-book btn-gold" id="btnRagazzi" onclick="apriPrenotazione('ragazzi_gio_1800', 'Collettiva Ragazzi (Gio 18:00)')">
-            Prenota Lezione Ragazzi <span class="price-nowrap">(12,90 €)</span>
+            Prenota Lezione Ragazzi<br /><span class="price-nowrap">(€ 12,90)</span>
           </button>
         </div>
       </section>
@@ -482,7 +483,7 @@
           <div>
             <div class="formula-head">
               <span class="formula-name">Lezione Collettiva Singola</span>
-              <span class="formula-price">12,90 €</span>
+              <span class="formula-price">€ 12,90</span>
             </div>
             <div class="formula-meta">Giovedì ore 19:15 (60 min) · Google Meet · Quorum 8 · Max 20</div>
             <div class="live-pill" id="liveAdulti">Disponibilità: caricamento...</div>
@@ -493,7 +494,7 @@
             </ul>
           </div>
           <button type="button" class="btn-book btn-gold" id="btnAdulti" onclick="apriPrenotazione('adulti_gio_1915', 'Collettiva Adulti (Gio 19:15)')">
-            Prenota Lezione Adulti <span class="price-nowrap">(12,90 €)</span>
+            Prenota Lezione Adulti<br /><span class="price-nowrap">(€ 12,90)</span>
           </button>
         </div>
       </section>
@@ -516,7 +517,7 @@
         <h2 class="modal-title" id="titoloModale">Prenota il tuo posto</h2>
         <button type="button" class="modal-close" onclick="chiudiPrenotazione()" aria-label="Chiudi">&times;</button>
       </div>
-      <p class="modal-sub" id="sottotitoloModale">Quota singola lezione: 12,90 € · Codice gruppo: <code>adulti_gio_1915</code></p>
+      <p class="modal-sub" id="sottotitoloModale">Quota singola lezione: € 12,90 · Codice gruppo: <code>adulti_gio_1915</code></p>
 
       <div class="saved-bar" id="barraDatiSalvati">
         <span>Dati dell'ultima prenotazione compilati in automatico.</span>
@@ -541,7 +542,7 @@
           <input type="tel" id="cellulare" name="tel" autocomplete="tel" placeholder="Es. 3802040875" required />
         </div>
 
-        <button type="submit" class="btn-book btn-gold" id="btnConferma">Procedi al pagamento <span class="price-nowrap">(12,90 €)</span></button>
+        <button type="submit" class="btn-book btn-gold" id="btnConferma">Procedi al pagamento<br /><span class="price-nowrap">(€ 12,90)</span></button>
       </form>
 
       <div class="esito" id="boxEsito"></div>
@@ -657,7 +658,7 @@
     function apriPrenotazione(codiceGruppo, etichettaTurno) {
       gruppoInput.value = codiceGruppo;
       titoloModale.textContent = etichettaTurno;
-      sottotitoloModale.innerHTML = `Quota singola lezione: <strong>12,90 €</strong> · Codice: <code>${codiceGruppo}</code>`;
+      sottotitoloModale.innerHTML = `Quota singola lezione: <strong>€ 12,90</strong> · Codice: <code>${codiceGruppo}</code>`;
       boxEsito.className = "esito";
       boxEsito.textContent = "";
       caricaDatiSalvatiAllievo();
@@ -734,7 +735,7 @@
           "<strong>Errore temporaneo di invio.</strong> Riprova tra qualche secondo o scrivimi su WhatsApp al <strong>3802040875</strong>.";
       } finally {
         btnConferma.disabled = false;
-        btnConferma.innerHTML = 'Procedi al pagamento <span class="price-nowrap">(12,90 €)</span>';
+        btnConferma.innerHTML = 'Procedi al pagamento<br /><span class="price-nowrap">(€ 12,90)</span>';
       }
     });
 
