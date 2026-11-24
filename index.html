@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lezioni Collettive Online di Chitarra</title>
+  <style>
+    :root {
+      --bg-page: #f7f4ed;
+      --bg-column: #efece3;
+      --bg-card: #ffffff;
+      --ink-dark: #1d1912;
+      --ink-muted: #5c5448;
+      --gold: #c9922c;
+      --gold-hover: #b58020;
+      --border: #e3ddd0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px 60px;
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg-page);
+      color: var(--ink-dark);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--ink-dark);
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      margin: 0 auto;
+      max-width: 680px;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ink-muted);
+    }
+
+    .grid-groups {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 820px) {
+      .grid-groups {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      body {
+        padding: 24px 14px 44px;
+      }
+      h1 {
+        font-size: 26px;
+      }
+      .group-col {
+        padding: 16px;
+        border-radius: 18px;
+      }
+      .formula-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .modal-card {
+        padding: 18px;
+        border-radius: 14px;
+      }
+      .field input {
+        font-size: 16px;
+      }
+    }
+
+    .group-col {
+      background: var(--bg-column);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .group-banner {
+      background: var(--ink-dark);
+      color: #ffffff;
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .group-tag {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .group-title {
+      margin: 0 0 8px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .group-code {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #d6cfc2;
+    }
+
+    .group-code code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 7px;
+      border-radius: 5px;
+      color: #f3c669;
+    }
+
+    .formula-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .formula-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .formula-name {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ink-dark);
+    }
+
+    .formula-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink-dark);
+      white-space: nowrap;
+    }
+
+    .formula-meta {
+      font-family: Arial, sans-serif;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+    }
+
+    .live-pill {
+      display: inline-block;
+      max-width: 100%;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--ink-dark);
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 10px;
+      margin-bottom: 14px;
+    }
+
+    .formula-points {
+      margin: 0 0 18px;
+      padding-left: 18px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-muted);
+    }
+
+    .formula-points li + li {
+      margin-top: 5px;
+    }
+
+    .btn-book {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 13.5px;
+      font-weight: bold;
+      padding: 13px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #ffffff;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-hover);
+    }
+
+    .btn-dark {
+      background: var(--ink-dark);
+      color: #ffffff;
+    }
+
+    .btn-dark:hover {
+      opacity: 0.9;
+    }
+
+    .btn-book:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .info-box {
+      background: var(--bg-column);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 26px;
+      margin-bottom: 24px;
+    }
+
+    .info-box h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink-dark);
+    }
+
+    .info-box ul {
+      margin: 0;
+      padding-left: 18px;
+      font-family: Arial, sans-serif;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--ink-muted);
+    }
+
+    .info-box li + li {
+      margin-top: 6px;
+    }
+
+    .info-box strong {
+      color: var(--ink-dark);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(29, 25, 18, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 440px;
+      max-height: 92dvh;
+      overflow-y: auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 18px 40px rgba(29, 25, 18, 0.22);
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 21px;
+      color: var(--ink-dark);
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      line-height: 1;
+      padding: 4px 8px;
+      color: var(--ink-muted);
+      cursor: pointer;
+    }
+
+    .modal-sub {
+      margin: 0 0 12px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .saved-bar {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .saved-bar.show {
+      display: flex;
+    }
+
+    .btn-clear-saved {
+      background: transparent;
+      border: none;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--ink-dark);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-family: Arial, sans-serif;
+      font-size: 12.5px;
+      font-weight: bold;
+      color: var(--ink-dark);
+      margin-bottom: 5px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: var(--ink-dark);
+      background: var(--bg-page);
+    }
+
+    .esito {
+      display: none;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+      background: var(--bg-column);
+      border: 1px solid var(--border);
+      color: var(--ink-dark);
+    }
+
+    .esito.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="eyebrow">Percorso di gruppo · Lezioni collettive online</div>
+      <h1>Lezioni Collettive Online di Chitarra</h1>
+      <p class="subtitle">
+        Scegli il turno del giovedì più adatto: <strong>Gruppo Ragazzi (ore 18:00)</strong>
+        oppure <strong>Gruppo Adulti (ore 19:15)</strong>, in diretta su Google Meet con doppia inquadratura,
+        quorum a 8 partecipanti e capienza massima di 20 posti.
+      </p>
+    </header>
+
+    <main class="grid-groups">
+      <!-- COLONNA RAGAZZI -->
+      <section class="group-col">
+        <div class="group-banner">
+          <div class="group-tag">Giovedì · Ore 18:00 · Gruppo Ragazzi</div>
+          <h2 class="group-title">Collettiva Ragazzi</h2>
+          <div class="group-code">Codice: <code>ragazzi_gio_1800</code></div>
+        </div>
+
+        <div class="formula-card">
+          <div>
+            <div class="formula-head">
+              <span class="formula-name">Lezione Collettiva Singola</span>
+              <span class="formula-price">12,90 €</span>
+            </div>
+            <div class="formula-meta">Giovedì ore 18:00 (60 min) · Google Meet · Quorum 8 · Max 20</div>
+            <div class="live-pill" id="liveRagazzi">Disponibilità: caricamento...</div>
+            <ul class="formula-points">
+              <li>Partenza da zero o consolidamento delle basi tecniche e ritmiche</li>
+              <li>Doppia inquadratura su Google Meet con correzione dal vivo di postura e dita</li>
+              <li>Attivazione al raggiungimento di 8 iscritti con link Meet condiviso</li>
+            </ul>
+          </div>
+          <button type="button" class="btn-book btn-gold" id="btnRagazzi" onclick="apriPrenotazione('ragazzi_gio_1800', 'Collettiva Ragazzi (Gio 18:00)')">
+            Prenota Lezione Ragazzi (12,90 €)
+          </button>
+        </div>
+      </section>
+
+      <!-- COLONNA ADULTI -->
+      <section class="group-col">
+        <div class="group-banner">
+          <div class="group-tag">Giovedì · Ore 19:15 · Gruppo Adulti</div>
+          <h2 class="group-title">Collettiva Adulti</h2>
+          <div class="group-code">Codice: <code>adulti_gio_1915</code></div>
+        </div>
+
+        <div class="formula-card">
+          <div>
+            <div class="formula-head">
+              <span class="formula-name">Lezione Collettiva Singola</span>
+              <span class="formula-price">12,90 €</span>
+            </div>
+            <div class="formula-meta">Giovedì ore 19:15 (60 min) · Google Meet · Quorum 8 · Max 20</div>
+            <div class="live-pill" id="liveAdulti">Disponibilità: caricamento...</div>
+            <ul class="formula-points">
+              <li>Programma chiaro su postura, ergonomia, accordatura, ritmica e primi brani</li>
+              <li>Classe a numero chiuso (max 20 posti) con confronto e guida passo dopo passo</li>
+              <li>Attivazione al raggiungimento di 8 iscritti con link Meet condiviso</li>
+            </ul>
+          </div>
+          <button type="button" class="btn-book btn-gold" id="btnAdulti" onclick="apriPrenotazione('adulti_gio_1915', 'Collettiva Adulti (Gio 19:15)')">
+            Prenota Lezione Adulti (12,90 €)
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <section class="info-box">
+      <h2>Come funziona la lezione collettiva online</h2>
+      <ul>
+        <li><strong>Quorum e capienza:</strong> ogni gruppo si attiva al raggiungimento di <strong>8 iscritti</strong> e ha un tetto massimo di <strong>20 partecipanti</strong> per garantire qualità e attenzione.</li>
+        <li><strong>Link Google Meet automatico:</strong> al raggiungimento del quorum viene generato l'evento su Google Calendar con il link Meet condiviso per tutti gli iscritti del turno.</li>
+        <li><strong>Supporto e info:</strong> per qualsiasi dubbio prima o dopo la prenotazione puoi scrivere su WhatsApp al <strong>3802040875</strong>.</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- MODALE DI PRENOTAZIONE -->
+  <div class="modal-backdrop" id="modalePrenotazione" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h2 class="modal-title" id="titoloModale">Prenota il tuo posto</h2>
+        <button type="button" class="modal-close" onclick="chiudiPrenotazione()" aria-label="Chiudi">&times;</button>
+      </div>
+      <p class="modal-sub" id="sottotitoloModale">Quota singola lezione: 12,90 € · Codice gruppo: <code>adulti_gio_1915</code></p>
+
+      <div class="saved-bar" id="barraDatiSalvati">
+        <span>Dati dell'ultima prenotazione compilati in automatico.</span>
+        <button type="button" class="btn-clear-saved" onclick="cancellaDatiSalvati()">Svuota</button>
+      </div>
+
+      <form id="formPrenotazione">
+        <input type="hidden" id="gruppoSelezionato" value="adulti_gio_1915" />
+
+        <div class="field">
+          <label for="nome">Nome e Cognome</label>
+          <input type="text" id="nome" name="name" autocomplete="name" placeholder="Es. Marco Rossi" required />
+        </div>
+
+        <div class="field">
+          <label for="email">Email (per l'invito Google Calendar / Meet)</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="Es. marco.rossi@gmail.com" required />
+        </div>
+
+        <div class="field">
+          <label for="cellulare">Numero di cellulare / WhatsApp</label>
+          <input type="tel" id="cellulare" name="tel" autocomplete="tel" placeholder="Es. 3802040875" required />
+        </div>
+
+        <button type="submit" class="btn-book btn-gold" id="btnConferma">Procedi al pagamento (12,90 €)</button>
+      </form>
+
+      <div class="esito" id="boxEsito"></div>
+    </div>
+  </div>
+
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw3nZMg-05fFylY7MxvYccEzlJFXkJYLBfGkH03jIOrttdfYA2S8LAybfuBiHIl6ez-GA/exec";
+
+    const STRIPE_LINKS = {
+      ragazzi_gio_1800: "https://buy.stripe.com/4gM4gB87W8i00MH8j29R607",
+      adulti_gio_1915: "https://buy.stripe.com/8x2dRbfAo1TC52Xara9R600"
+    };
+
+    const CHIAVE_STORAGE_ALLIEVO = "lezione_chitarra_ultimo_allievo";
+
+    const liveRagazzi = document.getElementById("liveRagazzi");
+    const liveAdulti = document.getElementById("liveAdulti");
+    const btnRagazzi = document.getElementById("btnRagazzi");
+    const btnAdulti = document.getElementById("btnAdulti");
+
+    const modale = document.getElementById("modalePrenotazione");
+    const titoloModale = document.getElementById("titoloModale");
+    const sottotitoloModale = document.getElementById("sottotitoloModale");
+    const barraDatiSalvati = document.getElementById("barraDatiSalvati");
+    const gruppoInput = document.getElementById("gruppoSelezionato");
+    const nomeInput = document.getElementById("nome");
+    const emailInput = document.getElementById("email");
+    const cellulareInput = document.getElementById("cellulare");
+    const form = document.getElementById("formPrenotazione");
+    const btnConferma = document.getElementById("btnConferma");
+    const boxEsito = document.getElementById("boxEsito");
+
+    function caricaDatiSalvatiAllievo() {
+      try {
+        const raw = localStorage.getItem(CHIAVE_STORAGE_ALLIEVO);
+        if (!raw) {
+          barraDatiSalvati.className = "saved-bar";
+          return;
+        }
+        const salvato = JSON.parse(raw);
+        let haDati = false;
+        if (salvato.nome && !nomeInput.value) {
+          nomeInput.value = salvato.nome;
+          haDati = true;
+        }
+        if (salvato.email && !emailInput.value) {
+          emailInput.value = salvato.email;
+          haDati = true;
+        }
+        if (salvato.cellulare && !cellulareInput.value) {
+          cellulareInput.value = salvato.cellulare;
+          haDati = true;
+        }
+        barraDatiSalvati.className = haDati ? "saved-bar show" : "saved-bar";
+      } catch (e) {
+        barraDatiSalvati.className = "saved-bar";
+      }
+    }
+
+    function salvaDatiAllievo(nome, email, cellulare) {
+      try {
+        localStorage.setItem(
+          CHIAVE_STORAGE_ALLIEVO,
+          JSON.stringify({ nome, email, cellulare })
+        );
+      } catch (e) {}
+    }
+
+    function cancellaDatiSalvati() {
+      try {
+        localStorage.removeItem(CHIAVE_STORAGE_ALLIEVO);
+      } catch (e) {}
+      nomeInput.value = "";
+      emailInput.value = "";
+      cellulareInput.value = "";
+      barraDatiSalvati.className = "saved-bar";
+      nomeInput.focus();
+    }
+
+    function formattaDisponibilita(info, btnEl) {
+      if (!info) return "Disponibilità: posti aperti (max 20)";
+      if (info.completo) {
+        if (btnEl) {
+          btnEl.disabled = true;
+          btnEl.textContent = "Turno Completo (20/20)";
+        }
+        return "Disponibilità: Completo (20 / 20 posti)";
+      }
+      if (info.quorum_raggiunto) {
+        return `Disponibilità: Quorum raggiunto · ${info.posti_residui_max} posti liberi su 20`;
+      }
+      return `Disponibilità: ${info.posti_residui_max} posti liberi su 20 (-${info.mancanti_quorum} al quorum di 8)`;
+    }
+
+    async function aggiornaDisponibilitaLive() {
+      try {
+        const res = await fetch(WEB_APP_URL, { method: "GET" });
+        const data = await res.json();
+        if (data && data.ok && data.gruppi) {
+          liveRagazzi.textContent = formattaDisponibilita(data.gruppi.ragazzi_gio_1800, btnRagazzi);
+          liveAdulti.textContent = formattaDisponibilita(data.gruppi.adulti_gio_1915, btnAdulti);
+        } else {
+          liveRagazzi.textContent = "Disponibilità: posti aperti (max 20)";
+          liveAdulti.textContent = "Disponibilità: posti aperti (max 20)";
+        }
+      } catch (err) {
+        liveRagazzi.textContent = "Disponibilità: posti aperti (max 20)";
+        liveAdulti.textContent = "Disponibilità: posti aperti (max 20)";
+      }
+    }
+
+    function apriPrenotazione(codiceGruppo, etichettaTurno) {
+      gruppoInput.value = codiceGruppo;
+      titoloModale.textContent = etichettaTurno;
+      sottotitoloModale.innerHTML = `Quota singola lezione: <strong>12,90 €</strong> · Codice: <code>${codiceGruppo}</code>`;
+      boxEsito.className = "esito";
+      boxEsito.textContent = "";
+      caricaDatiSalvatiAllievo();
+      modale.classList.add("open");
+      modale.setAttribute("aria-hidden", "false");
+    }
+
+    function chiudiPrenotazione() {
+      modale.classList.remove("open");
+      modale.setAttribute("aria-hidden", "true");
+    }
+
+    modale.addEventListener("click", function (e) {
+      if (e.target === modale) chiudiPrenotazione();
+    });
+
+    function costruisciUrlStripe(baseUrl, nome, email, cellulare) {
+      const url = new URL(baseUrl);
+      if (email) url.searchParams.set("prefilled_email", email);
+      if (nome || cellulare) {
+        url.searchParams.set("client_reference_id", `${nome} | ${cellulare}`);
+      }
+      return url.toString();
+    }
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      btnConferma.disabled = true;
+      btnConferma.textContent = "Reindirizzamento a Stripe...";
+      boxEsito.className = "esito";
+
+      const gruppo = gruppoInput.value;
+      const nome = nomeInput.value.trim();
+      const email = emailInput.value.trim();
+      const cellulare = cellulareInput.value.trim();
+
+      salvaDatiAllievo(nome, email, cellulare);
+
+      const payload = {
+        nome: nome,
+        email: email,
+        cellulare: cellulare,
+        telefono: cellulare,
+        gruppo: gruppo,
+        stato: "preautorizzato",
+        importo: 12.90
+      };
+
+      try {
+        await fetch(WEB_APP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        const linkStripe = STRIPE_LINKS[gruppo];
+        if (linkStripe) {
+          const parsedUrl = new URL(linkStripe);
+          if (parsedUrl.protocol === "https:") {
+            window.location.href = costruisciUrlStripe(linkStripe, nome, email, cellulare);
+            return;
+          }
+        }
+
+        boxEsito.className = "esito show";
+        boxEsito.innerHTML =
+          "<strong>Prenotazione registrata!</strong><br />" +
+          "Il tuo posto è stato inserito nel registro.";
+        setTimeout(aggiornaDisponibilitaLive, 1500);
+      } catch (err) {
+        boxEsito.className = "esito show";
+        boxEsito.innerHTML =
+          "<strong>Errore temporaneo di invio.</strong> Riprova tra qualche secondo o scrivimi su WhatsApp al <strong>3802040875</strong>.";
+      } finally {
+        btnConferma.disabled = false;
+        btnConferma.textContent = "Procedi al pagamento (12,90 €)";
+      }
+    });
+
+    aggiornaDisponibilitaLive();
+  </script>
+</body>
+</html>
